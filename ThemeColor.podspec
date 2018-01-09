@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ThemeColor"
-  s.version      = "0.0.1"
+  s.version      = "0.1.0"
   s.summary      = "A Powerful color/theme/skin manager."
 
   # This description is used to generate tags and improve search results.
@@ -64,8 +64,8 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  # s.platform     = :ios
+  s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -93,7 +93,6 @@ Pod::Spec.new do |s|
 
   s.source_files  = "Classes", "ThemeColor/*.{swift}"
   s.exclude_files = "Classes/Exclude"
-
   # s.public_header_files = "Classes/**/*.h"
 
 
