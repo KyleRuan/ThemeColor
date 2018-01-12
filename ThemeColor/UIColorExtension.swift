@@ -39,10 +39,10 @@ extension UIColor {
         var hexString:String = ""
         do {
            hexString  = try ThemeManager.sharedManager.getColorWith(color: color)
-        } catch let ThemeChangeError.ColorConfigError(state)  {
+        } catch let ThemeChangeError.colorConfigError(state)  {
             print(state)
             return nil
-        } catch let ThemeChangeError.EmptyColorList(state){
+        } catch let ThemeChangeError.emptyColorList(state){
             print(state)
             return nil
         } catch {

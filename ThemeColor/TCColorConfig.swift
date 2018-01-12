@@ -16,10 +16,10 @@ public enum ThemeType:Int {
 // default work with kDefaultColorList
 // call ThemeManager.sharedManager.setThemeColorList to set color config
 public enum TCColorName:Int {
-    case ColorNameRed = 0
-    case ColorNameBlue
-    case ColorNameYellow
-    case ColorNameOrange
+    case colorNameRed = 0
+    case colorNameBlue
+    case colorNameYellow
+    case colorNameOrange
 }
 
 

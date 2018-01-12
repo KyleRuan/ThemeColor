@@ -18,7 +18,7 @@ extension UIImage {
         var themedName = imageName
         do {
              themedName = try ThemeManager.sharedManager.getImageName(imageName: imageName)
-        } catch let ThemeChangeError.ImagePrefixConfig(state) {
+        } catch let ThemeChangeError.imagePrefixConfig(state) {
             print(state)
         }catch {
             print("unexpected error")

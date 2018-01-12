@@ -10,53 +10,50 @@ import UIKit
 
 
 public enum ThemeChangeError:Error {
-    case EmptyColorList(String)
-    case ColorConfigError(String)
-    case ImagePrefixConfig(String)
-    
+    case emptyColorList(String)
+    case colorConfigError(String)
+    case imagePrefixConfig(String)
 }
 
-private let current_theme_usertdefualt_key = "current_theme_usetdefualt_key"
+private let currentThemeUsertdefualtKey = "current_theme_usetdefualt_key"
 public class ThemeManager: NSObject {
     private override init() {
         super.init()
-        let type = UserDefaults.standard.integer(forKey: current_theme_usertdefualt_key)
+        let type = UserDefaults.standard.integer(forKey: currentThemeUsertdefualtKey)
         themeType = ThemeType(rawValue: type)
     }
     private(set) var themeType:ThemeType! {
         didSet {
-            UserDefaults.standard.set(themeType.rawValue, forKey: current_theme_usertdefualt_key)
+            UserDefaults.standard.set(themeType.rawValue, forKey: currentThemeUsertdefualtKey)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: kThemeUpdateNotification), object: nil)
         }
     }
-    
-    
     
     func getColorWith(color:TCColorName)  throws ->String {
         if self.colorList.isEmpty {
             self.colorList = kDefaultColorList
             if self.colorList.isEmpty {
-                throw ThemeChangeError.EmptyColorList("color list not config please call setThemeColorList to config")
+                throw ThemeChangeError.emptyColorList("color list not config please call setThemeColorList to config")
             }
         }
         
         if (self.colorList.count<=color.rawValue) {
-            throw ThemeChangeError.ColorConfigError("colorList not match the TCColorName list")
+            throw ThemeChangeError.colorConfigError("colorList not match the TCColorName list")
         }
         let currentColors = self.colorList[color.rawValue]
         return currentColors[self.themeType.rawValue]
     }
     
-    func getImageName(imageName:String)throws -> String  {
+    func getImageName(imageName:String)throws -> String {
         
         if ThemeManager.sharedManager.themeType.rawValue == 0 {
             return imageName
         }
         
         if self.imagePrefixes.isEmpty {
-            throw ThemeChangeError.ImagePrefixConfig("Image name prefixes not set please call  setThemeImagePrefix")
+            throw ThemeChangeError.imagePrefixConfig("Image name prefixes not set please call  setThemeImagePrefix")
         } else if ThemeManager.sharedManager.themeType.rawValue >= imagePrefixes.count {
-            throw ThemeChangeError.ImagePrefixConfig("Image name prefixes not set right ")
+            throw ThemeChangeError.imagePrefixConfig("Image name prefixes not set right ")
         }
         let prefix = self.imagePrefixes[ThemeManager.sharedManager.themeType.rawValue]
         return "\(prefix)_\(imageName)"
@@ -68,10 +65,9 @@ public class ThemeManager: NSObject {
         return manager
     }()
     
-    public func switchTheme(type:ThemeType)  {
+    public func switchTheme(type:ThemeType) {
         self.themeType = type
     }
-    
     
     var colorList:[[String]] = []
     public func setThemeColorList(list:[[String]]) {

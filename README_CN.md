@@ -6,14 +6,12 @@
 ![language](https://img.shields.io/cocoapods/l/ThemeColor.svg?style=flat)
 
 a simple way to manage theme ,   a Powerful color/theme/skin manager
-<a href="README_CN.md">中文文档</a>
+
 ![demo](https://github.com/KyleRuan/ThemeColor/blob/master/README_IMAGE/demo.gif)
-## Color Management
-Color is the foundation of an app presentation, and every mature app should have its own design style.This Project manage colors  by enumeration. Each enumeration has a color array corresponding to a different theme. You can edit TCColorConfig.swift to edit or set the default color scheme. You can also set the color scheme dynamically using `ThemeManager.sharedManager.setThemeColorList`.
 
-Note that `TCColorName`,` kDefaultColorList`, `ThemeType` need one-to-one correspondence.
-
-
+## 颜色管理
+颜色是一个app展示的基础，每一个成熟的app都该有自己的设计风格。为了规范颜色，通过枚举来来管理颜色。为了切换主题，采用不同枚举对应多个颜色。可以编辑TCColorConfig.swift 来编辑设置默认配色方案 ，也可以通过`ThemeManager.sharedManager.setThemeColorList `动态设置配色方案。
+需要注意的是`TCColorName`个数要和kDefaultColorList的个数需要一一对应。主题的个数`ThemeType`要和`kDefaultColorList`每个元素的个数一致。
 
 ```swift
 // default work with kDefaultColorList
@@ -33,43 +31,42 @@ public enum ThemeType:Int {
 }
 ```
 
-A unified color management platform (recently released) is shown below
+提供统一的颜色管理平台（近期放出）如下所示
 ![themeBoard](https://github.com/KyleRuan/ThemeColor/blob/master/README_IMAGE/themeBoard.png)
-## Function
-### Color
-Provides a hexadecimal way to set the color based on enum `TCColorName`
+## 功能
+### 颜色
+提供了十六进制，根据枚举TCColorName来设置颜色的方法
 
 ### UIView 
-1. `tc_themeBlock` is a block of theme switches that handles not only color changes, but also all UIView-related properties.
-2. `tc_backgroundColor`: When the theme switch, can be used to set the background color UIView
-3.  `tc_borderColor` installation layer` borderColor`
+1. `tc_themeBlock`  ：是一个主题切换的block，不止可以处理颜色的变化。还可以设置一切和`UIView`相关的属性。
+2. `tc_backgroundColor` ：当主题切换，可以用来设置`UIView`背景色
+3.  `tc_borderColor`设置layer `borderColor`
 
 ###  UILabel Extension
-1. `tc_textColor`: set the` UILabel` font color
-2.  `tc_highlightedTextColor`: set UILabel highlight font color
+1. `tc_textColor`  的`UILabel`字体颜色
+2.  `tc_highlightedTextColor` 的`UILabel` 高亮字体颜色
 
 ### UIImageView
+`UIImageView` 在主题切换中需要不同的图片，所以需要对图片的命名采取一定的规范,通过
+` ThemeManager.sharedManager.setThemeImagePrefix` 命名规范，比如["","night"],那么"themeImage"
+对应的主题图片名字为"night_themeImage"。提供两种方式来设置主题图片如下
 
-`UIImageView` requires a different picture in the theme switch, so you need to take a certain norm on the picture naming. 
+1. `tc_imageName` 设置默认主题下的图片名
 
- 
-call  the function
-`ThemeManager.sharedManager.setThemeImagePrefix`  to normalize the theme image name.
-e.g: [" "," night "], then the image named" themeImage " ,The corresponding theme image name is "night_themeImage". There are two ways to set the theme image as below
-
-1. `tc_imageName` :Set the default theme of the picture name
-
-For solid images also provide a way to color the image
-1. `func set_imageName(_ imageName:String?,nightTintColor tintColor:TCColorName?)`
+对于纯色的图片 还提供对图片进行着色的方法
+`func set_imageName(_ imageName:String?,nightTintColor tintColor:TCColorName?)`
 
 ### UIButton
-`UIButton` has multiple states for pictures
+`UIButton`具有多个状态，对于图片 
 1. `func tc_setImage(_ imageName: String?, for state: UIControlState)`
 2. `func tc_setImage(_ imageName: String?, tintColor:TCColorName?,for state: UIControlState) `
 
-Available for the font color of `UIButton`
+对于`UIButton`的字体颜色提供
 1. `func tc_setTitleColor(_ color: TCColorName?, for state: UIControlState)`
 2. `func tc_setTitleShadowColor(_ color: TCColorName?, for state: UIControlState)`
+
+
+
 
 ## LICENSE
 MIT License
