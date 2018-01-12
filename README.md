@@ -1,4 +1,4 @@
-
+![logo](README_IMAGE/logo)
 # ThemeColor
 ![CocoaPods Compatible](https://img.shields.io/cocoapods/v/ThemeColor.svg?style=flat)
 ![Platform](https://img.shields.io/cocoapods/p/ThemeColor.svg?style=flat)
@@ -6,6 +6,8 @@
 ![language](https://img.shields.io/cocoapods/l/ThemeColor.svg?style=flat)
 
 a simple way to manage theme ,   a Powerful color/theme/skin manager
+
+![logo](demo/demo.gif)
 
 ## 颜色管理
 颜色是一个app展示的基础，每一个成熟的app都该有自己的设计风格。为了规范颜色，通过枚举来来管理颜色。为了切换主题，采用不同枚举对应多个颜色。可以编辑TCColorConfig.swift 来编辑设置默认配色方案 ，也可以通过`ThemeManager.sharedManager.setThemeColorList `动态设置配色方案。
@@ -29,6 +31,8 @@ public enum ThemeType:Int {
 }
 ```
 
+提供统一的颜色管理平台（近期放出）如下所示
+![themeBoard](README_IMAGE/themeBoard)
 ## 功能
 ###颜色
 提供了十六进制，根据枚举TCColorName来设置颜色的方法
