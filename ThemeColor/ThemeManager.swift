@@ -23,12 +23,14 @@ public class ThemeManager: NSObject {
         let type = UserDefaults.standard.integer(forKey: current_theme_usertdefualt_key)
         themeType = ThemeType(rawValue: type)
     }
-    var themeType:ThemeType! {
+    private(set) var themeType:ThemeType! {
         didSet {
             UserDefaults.standard.set(themeType.rawValue, forKey: current_theme_usertdefualt_key)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: kThemeUpdateNotification), object: nil)
         }
     }
+    
+    
     
     func getColorWith(color:TCColorName)  throws ->String {
         if self.colorList.isEmpty {
@@ -70,17 +72,17 @@ public class ThemeManager: NSObject {
         self.themeType = type
     }
     
-    public func switchThemeInTwoType()  {
-        if self.themeType == .themeDay {
-           self.themeType = .themeNight
-        } else {
-           self.themeType = .themeDay
-        }
-    }
     
     var colorList:[[String]] = []
     public func setThemeColorList(list:[[String]]) {
+        if !self.colorList.isEmpty {
+            // update
+            if self.colorList.count != list.count {
+                print("set not match the enum count may crash")
+            }
+        }
         self.colorList = list
+        self.switchTheme(type: themeType)
     }
     fileprivate var imagePrefixes:[String] = []
     public func setThemeImagePrefix(imagePreArray:[String]) {

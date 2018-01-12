@@ -19,8 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITc-t5-S44">
-                                <rect key="frame" x="319" y="414" width="34" height="30"/>
+                                <rect key="frame" x="177" y="505" width="136" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="push"/>
                                 <connections>
                                     <segue destination="SNC-fa-wht" kind="show" id="Sk7-X7-jLb"/>
@@ -34,7 +35,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82" y="20"/>
+            <point key="canvasLocation" x="80.799999999999997" y="19.340329835082461"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="o00-O6-nqJ">

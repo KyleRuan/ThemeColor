@@ -16,7 +16,7 @@ fileprivate var borderColorKey = "borderColorKey"
 public typealias ThemeClosure = (_ view:UIView,_ themeType:ThemeType) -> Void
 
 public extension UIView {
-     var themeDict:[String:ThemeClosure?]? {
+    fileprivate(set) var themeDict:[String:ThemeClosure?]? {
         set {
             objc_setAssociatedObject(self,&themeDictKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
@@ -26,12 +26,14 @@ public extension UIView {
                 return themeDict
             }
             let themeDict:[String:ThemeClosure] = [:]
-
-            NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: kThemeUpdateNotification), object: nil, queue: nil) { [weak self]  noti in
+            var token: NSObjectProtocol?
+            token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: kThemeUpdateNotification), object: nil, queue: nil) { [weak self]  noti in
                 guard let weakSelf = self else {
+                    if let listen = token {
+                        NotificationCenter.default.removeObserver(listen)
+                    }
                     return
                 }
-
                 weakSelf.themeDict?.forEach({ (key,closure) in
                     if let themeBlock = closure {
                         themeBlock(weakSelf , ThemeManager.sharedManager.themeType)
@@ -167,22 +169,40 @@ private var imageNameKey = "imageNameKey"
 public extension UIImageView {
     var tc_imageName:String? {
         set {
-            let themeClosure:ThemeClosure = { [weak self]
-                (view:UIView, themeType:ThemeType) -> Void in
-                guard let weakSelf = self else {
-                    return
-                }
-                weakSelf.image = UIImage(themeName: newValue)
-            }
-            
-            self.themeDict?[imageNameKey] = themeClosure
-            themeClosure(self, ThemeManager.sharedManager.themeType)
+            self.set_imageName(newValue, tintColor: nil)
             objc_setAssociatedObject(self, &imageNameKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
             
         }
         get {
             return objc_getAssociatedObject(self,  &imageNameKey) as? String
         }
+    }
+    
+    func set_imageName(_ imageName:String?,tintColor:TCColorName?)  {
+        
+            let themeClosure:ThemeClosure = { [weak self]
+                (view:UIView, themeType:ThemeType) -> Void in
+                guard let weakSelf = self else {
+                    return
+                }
+                var buttonImage:UIImage!
+                
+                if themeType != .themeDay {
+                    if let colorName = tintColor,let imageNamed = imageName  {
+                        buttonImage = UIImage(named: imageNamed)?.colorizeImage(colorName: colorName)
+                    }
+                }
+                
+                
+                if buttonImage == nil {
+                    buttonImage = UIImage(themeName:imageName)
+                }
+                
+                weakSelf.image = buttonImage
+            }
+            
+            self.themeDict?[imageNameKey] = themeClosure
+            themeClosure(self, ThemeManager.sharedManager.themeType)
     }
     
 }
@@ -194,13 +214,28 @@ fileprivate var setBackgroundImageKey = "setBackgroundImageKey"
 public extension UIButton {
     // this will work for the name 
     func tc_setImage(_ imageName: String?, for state: UIControlState)  {
-        self.setImage(UIImage(themeName: imageName), for: state)
+        self.tc_setImage(imageName, tintColor: nil, for: state)
+    }
+    
+    func tc_setImage(_ imageName: String?, tintColor:TCColorName?,for state: UIControlState)  {
+
         let themeClosure:ThemeClosure = { [weak self]
             (view:UIView, themeType:ThemeType) -> Void in
             guard let weakSelf = self else {
                 return
             }
-            weakSelf.setImage(UIImage(themeName:imageName), for: state)
+            var buttonImage:UIImage!
+            if themeType != .themeDay {
+                if let colorName = tintColor ,let imageNamed = imageName{
+                    buttonImage = UIImage(named: imageNamed)?.colorizeImage(colorName: colorName)
+                }
+            }
+            
+            if buttonImage == nil {
+                buttonImage = UIImage(themeName:imageName)
+            }
+            
+            weakSelf.setImage(buttonImage, for: state)
         }
         let key = "\(state.rawValue)_\(setImageKey)"
         self.themeDict?[key] = themeClosure

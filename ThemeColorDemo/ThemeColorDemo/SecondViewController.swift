@@ -33,6 +33,12 @@ class SecondViewController: UIViewController {
     }
     
     @objc func switchTheme() {
-        ThemeManager.sharedManager.switchThemeInTwoType()
+        if  ThemeManager.sharedManager.themeType == .themeDay {
+            ThemeManager.sharedManager.switchTheme(type: .themeNight)
+        } else {
+            ThemeManager.sharedManager.switchTheme(type: .themeDay)
+        }
+        
     }
+
 }

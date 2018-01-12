@@ -18,12 +18,16 @@ public enum ThemeType:Int {
 public enum TCColorName:Int {
     case ColorNameRed = 0
     case ColorNameBlue
+    case ColorNameYellow
+    case ColorNameOrange
 }
 
 
 let kDefaultColorList:[[String]] = [
     [ "ee1a1a", "892323"],
-    [ "1b88ee", "144e84"]
+    [ "1b88ee", "144e84"],
+    [ "f5a623", "7a5313"],
+    [ "fe5d10", "7c300b"]
 ]
 
 
