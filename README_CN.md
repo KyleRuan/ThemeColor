@@ -65,6 +65,18 @@ public enum ThemeType:Int {
 1. `func tc_setTitleColor(_ color: TCColorName?, for state: UIControlState)`
 2. `func tc_setTitleShadowColor(_ color: TCColorName?, for state: UIControlState)`
 
+## 安装
+### CocoaPods
+```
+use_frameworks!
+pod 'ThemeColor'
+```
+
+### Source files
+复制"ThemeColor" 文件夹中所有的文件到你的工程中去
+
+## 配置
+编辑 `TCColorConfig.swift` 文件
 
 
 

@@ -7,6 +7,8 @@
 
 a simple way to manage theme ,   a Powerful color/theme/skin manager
 <a href="README_CN.md">中文文档</a>
+
+
 ![demo](https://github.com/KyleRuan/ThemeColor/blob/master/README_IMAGE/demo.gif)
 ## Color Management
 Color is the foundation of an app presentation, and every mature app should have its own design style.This Project manage colors  by enumeration. Each enumeration has a color array corresponding to a different theme. You can edit TCColorConfig.swift to edit or set the default color scheme. You can also set the color scheme dynamically using `ThemeManager.sharedManager.setThemeColorList`.
@@ -70,7 +72,17 @@ For solid images also provide a way to color the image
 Available for the font color of `UIButton`
 1. `func tc_setTitleColor(_ color: TCColorName?, for state: UIControlState)`
 2. `func tc_setTitleShadowColor(_ color: TCColorName?, for state: UIControlState)`
+## Installation
+### CocoaPods
+```
+use_frameworks!
+pod 'ThemeColor'
+```
 
+### Source files
+Copy all the files in "ThemeColor" folder into your project
+## configuration 
+config the `TCColorConfig.swift` file
 ## LICENSE
 MIT License
 

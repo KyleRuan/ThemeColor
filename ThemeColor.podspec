@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ThemeColor"
-  s.version      = "0.1.0"
+  s.version      = "0.2.0"
   s.summary      = "A Powerful color/theme/skin manager."
 
   # This description is used to generate tags and improve search results.
