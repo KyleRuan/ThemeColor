@@ -35,7 +35,7 @@ public enum ThemeType:Int {
 }
 ```
 
-A unified color management platform (recently released) is shown below
+A unified color management platform  [ColorBoard](https://github.com/KyleRuan/LuckyColorBoard)is shown below
 ![themeBoard](https://github.com/KyleRuan/ThemeColor/blob/master/README_IMAGE/themeBoard.png)
 ## Function
 ### Color
@@ -73,16 +73,11 @@ Available for the font color of `UIButton`
 1. `func tc_setTitleColor(_ color: TCColorName?, for state: UIControlState)`
 2. `func tc_setTitleShadowColor(_ color: TCColorName?, for state: UIControlState)`
 ## Installation
-### CocoaPods
-```
-use_frameworks!
-pod 'ThemeColor'
-```
 
 ### Source files
 Copy all the files in "ThemeColor" folder into your project
 ## configuration 
-config the `TCColorConfig.swift` file
+config the `TCColorConfig.swift` file , you can also use the  [ColorBoard](https://github.com/KyleRuan/LuckyColorBoard) to manage the color and generate the  code 
 ## LICENSE
 MIT License
 

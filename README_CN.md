@@ -31,7 +31,7 @@ public enum ThemeType:Int {
 }
 ```
 
-提供统一的颜色管理平台（近期放出）如下所示
+提供统一的颜色管理平台 [ColorBoard](https://github.com/KyleRuan/LuckyColorBoard)如下所示
 ![themeBoard](https://github.com/KyleRuan/ThemeColor/blob/master/README_IMAGE/themeBoard.png)
 ## 功能
 ### 颜色
@@ -66,18 +66,12 @@ public enum ThemeType:Int {
 2. `func tc_setTitleShadowColor(_ color: TCColorName?, for state: UIControlState)`
 
 ## 安装
-### CocoaPods
-```
-use_frameworks!
-pod 'ThemeColor'
-```
-
 ### Source files
 复制"ThemeColor" 文件夹中所有的文件到你的工程中去
 
 ## 配置
-编辑 `TCColorConfig.swift` 文件
-
+编辑 `TCColorConfig.swift` 文件,可以通过 [ColorBoard](https://github.com/KyleRuan/LuckyColorBoard)
+去管理颜色和生成配置文件
 
 
 ## LICENSE
